@@ -6,9 +6,13 @@ The project implements a simplified version of the distributed hash table with M
 _The image is taken from hazelcast.com_
 
 ## Installation 
+
 Include dht.h in the user program. A sample user program, command.c, is given the source directory.
+
 ```#include "dht.h"```
+
 Compile and run your program. This is an example Makefile:
+
 ```
 dht:	dht.o dht-helper.o command.o
 	mpicc -o dht dht.o dht-helper.o command.o
@@ -26,11 +30,16 @@ clean:
 	rm -f *.o dht 
 ```
 ## Commands
-There are 5 available operations. 
+There are 5 available operations:
+
 PUT: 0 <key> <value>: stores a value on one of the storage nodes. They key is an integer between 1 and 1000.
+
 GET: 1 <key>: returns the value associated with the key. If not found, -1000 returned.
+
 ADD: 2 <rank> <id>: adds the node of the given rank to the cluster, assigning the given id. The data will be redistributed to make up for the addition.
+
 REMOVE: 3 <id>: removed the node with the specified id from the dht. The data is trasnferred to neighboring nodes.
+
 END: 4: terminates the program.
 
 For the examples how the commands are called, have a look at command.c.
