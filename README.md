@@ -5,3 +5,28 @@ The project implements a simplified version of the distributed hash table with M
 
 _The image is taken from hazelcast.com_
 
+## Installation 
+Include dht.h in the user program. A sample user program, command.c, is given the source directory.
+```#include "dht.h"```
+Compile and run your program. This is an example Makefile:
+```
+dht:	dht.o dht-helper.o command.o
+	mpicc -o dht dht.o dht-helper.o command.o
+
+dht-helper.o:	dht-helper.c dht-helper.h
+	mpicc -c -std=c99 dht-helper.c
+
+dht.o:	dht.c dht-helper.h
+	mpicc -c  -std=c99 dht.c
+
+command.o:	command.c
+	mpicc -c  -std=c99 command.c
+
+clean:
+	rm -f *.o dht 
+```
+## API
+
+
+
+
